@@ -1,0 +1,23 @@
+services:
+  nodejs:
+    container_name: nodejs
+    build: 
+      context: .
+    volumes: 
+      - .:/usr/src/app
+    ports:
+      - 3000:3000
+    command: ["sh", "./start.sh", "bdd"]
+    
+  bdd:
+    container_name: bdd
+    image: postgres:17
+    env_file:
+      - .env
+    environment:
+      - POSTGRES_USER=${POSTGRES_USER}
+      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
+      - POSTGRES_DB=${POSTGRES_DB}
+      - POSTGRES_HOST=${POSTGRES_HOST}
+    ports:
+      - 4000:4000
