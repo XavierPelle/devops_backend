@@ -2,7 +2,7 @@ FROM node:alpine
 
 RUN apk add --no-cache postgresql-client
 
-RUN npm i
+RUN npm install
 
 WORKDIR /usr/src/app
 
